@@ -32,3 +32,36 @@ await contract.top()
 await contract.floor()
 
 // me tengo que generar un building? y ahi pongo la funcion isLastFloor? mmm
+
+pragma solidity ^0.4.18;
+
+interface Ori {
+    function goTo(uint _floor) public;
+}
+
+contract Building {
+    
+    address public original;
+    bool public blah = true;
+    
+    function Building(address _original) public {
+        original = _original;
+    }
+    
+    function llama(uint _piso) public {
+        Ori ori = Ori(original);
+        ori.goTo(_piso);
+    }
+    
+  function isLastFloor(uint _piso) view public returns (bool) {
+      if(!blah) {
+          blah = true;
+          return false;
+      }
+      blah = false;
+      return true;
+  }
+  
+}
+
+luego llamo a llama(cualquierNumero) y eso hace que la primera sea falso isLastFloor, pero a la segunda vuelta sea verdero
